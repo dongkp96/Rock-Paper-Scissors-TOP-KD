@@ -15,37 +15,73 @@ function playRound(human, computer){
     if((human === "Rock" && computer === "Scissor") || (human === "Scissor" && computer === "Paper") || (human === "Paper" && computer === "Rock")){
         humanScore++;
         round++;
+        updateScore();
+        checkWinner();
     }else if (human === computer){
         round++;
+        updateScore();
+        checkWinner();
     }else{
         computerScore++;
         round++;
+        updateScore();
+        checkWinner();
     }
 }
+
+function updateScore(){
+    document.querySelector("#round").textContent = "Round: " + round;
+    document.querySelector("#player-score").textContent = "Player: " + humanScore;
+    document.querySelector("#computer-score").textContent = "Computer: " + computerScore;
+}
+
+function checkWinner(){
+    if(humanScore >= 5){
+        alert("Congratulations! You won!")
+        round = 1;
+        humanScore = 0;
+        computerScore = 0;
+    }else if (computerScore >= 5){
+        alert("I'm sorry! You lost!")
+        round = 1;
+        humanScore = 0;
+        computerScore = 0;
+    }
+}
+
+function reset(){
+    round = 1;
+    humanScore = 0;
+    computerScore = 0;
+    document.querySelector("#player").setAttribute("src", "");
+    document.querySelector("#computer").setAttribute("src", "");
+
+}
+
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorBtn = document.querySelector("#scissor");
+const resetBtn = document.querySelector("#reset");
 
-function game(){
-    let humanScore = 0;
-    let computerScore = 0;
-    let round = 1;
+let humanScore = 0;
+let computerScore = 0;
+let round = 1;
 
-    while (humanScore < 5 || computerScore < 5){  
-        rockBtn.addEventListener("click", () =>{
-            playRound("Rock", getComputerChoice());
-        });
-        paperBtn.addEventListener("click", () =>{
-            playRound("Paper", getComputerChoice());
-        });
-        scissorBtn.addEventListener("click", () =>{
-            playRound("Scissor", getComputerChoice());
-        });
-    }
-}
+rockBtn.addEventListener("click", () =>{
+    playRound("Rock", getComputerChoice());
 
-game();
+});
+paperBtn.addEventListener("click", () =>{
+    playRound("Paper", getComputerChoice());
+});
+scissorBtn.addEventListener("click", () =>{
+    playRound("Scissor", getComputerChoice());
+});
+resetBtn.addEventListener("click", reset);
+
+
+
 
 /*let humanScore = 0;
 let computerScore = 0;

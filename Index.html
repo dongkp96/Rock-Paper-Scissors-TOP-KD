@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="stylesheet.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <h1>Rock Paper Scissors!</h1>
     <div id = "container">
-        <div id = "header"> Rock Paper Scissors!</div>
-        <div id = "round">Round: </div>
-        <div id = "player-score">Player:  </div>
-        <div id = "computer-score">CPU:  </div>    
+        <div id = "scoreboard">
+            <div id = "round">Round: </div>
+            <div id = "player-score">Player:  </div>
+            <div id = "computer-score">CPU:  </div> 
+            <div id = "draws">Draws: </div>    
+        </div> 
         <div id = "content"> 
-            <img id="player" src="" height = 100>
+            <img id="player" src="imgs/blackbox.png" height = 150 width = 200>
             <div>VS</div>
-            <img id="computer" src="imgs/paper.png" height = 100>
+            <img id="computer" src="imgs/blackbox.png" height = 150 width= 200>
         </div>       
         <button id = "rock">Rock</button>
         <button id = "paper">Paper</button>

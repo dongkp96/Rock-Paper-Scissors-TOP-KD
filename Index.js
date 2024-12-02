@@ -19,6 +19,7 @@ function playRound(human, computer){
         checkWinner();
     }else if (human === computer){
         round++;
+        draws++;
         updateScore();
         checkWinner();
     }else{
@@ -33,28 +34,27 @@ function updateScore(){
     document.querySelector("#round").textContent = "Round: " + round;
     document.querySelector("#player-score").textContent = "Player: " + humanScore;
     document.querySelector("#computer-score").textContent = "Computer: " + computerScore;
+    document.querySelector("#draws").textContent = "Draws: " + draws;
 }
 
 function checkWinner(){
     if(humanScore >= 5){
         alert("Congratulations! You won!")
-        round = 1;
-        humanScore = 0;
-        computerScore = 0;
+        reset();
     }else if (computerScore >= 5){
         alert("I'm sorry! You lost!")
-        round = 1;
-        humanScore = 0;
-        computerScore = 0;
+        reset();
     }
 }
 
 function reset(){
-    round = 1;
+    round = 0;
     humanScore = 0;
     computerScore = 0;
-    document.querySelector("#player").setAttribute("src", "");
-    document.querySelector("#computer").setAttribute("src", "");
+    draws = 0;
+    document.querySelector("#player").setAttribute("src", "imgs/blackbox.png");
+    document.querySelector("#computer").setAttribute("src", "imgs/blackbox.png");
+    updateScore();
 
 }
 
@@ -66,7 +66,8 @@ const resetBtn = document.querySelector("#reset");
 
 let humanScore = 0;
 let computerScore = 0;
-let round = 1;
+let round = 0;
+let draws = 0;
 
 rockBtn.addEventListener("click", () =>{
     playRound("Rock", getComputerChoice());
